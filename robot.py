@@ -8,10 +8,10 @@ class Motor(Device):
         slider = graphics.Slider(managed_property=self.speed, min_value=0., max_value=1., step=0.1)
         self.speed.add_listener(lambda speed: self.set_speed(speed))
         self.device_cell = graphics.GraphicCell([header, slider])
-        super().__init__([self.speed], self.device_cell)
+        super().__init__(f"{self.__class__.__name__}--{name}", [self.speed], self.device_cell)
 
-    def set_speed(self, speed: DeviceProperty[float]):
-        print(f"Setting motor speed to", speed.value)
+    def set_speed(self, speed: float):
+        print("Setting motor speed to", speed)
         # TODO: Implement motor speed control logic here
 
 
