@@ -1,6 +1,7 @@
 from cyberonics_py import Robot, Device, DeviceProperty
 import cyberonics_py.graphics as graphics
-from cyberonics_py.graphics import Color
+from cyberonics_py.graphics import Color, Alignment
+
 
 class Motor(Device):
     def __init__(self, name: str):
@@ -22,7 +23,7 @@ class Motor(Device):
         switch = graphics.Switch(managed_property=self.isEnabled)
         button = graphics.Button("Flash", dot.flash, text_color=graphics.Color.hex("#f542a7"))
         slider = graphics.Slider(managed_property=self.speed, min_value=0., max_value=1., step=0.1)
-        subText = graphics.SubText("Speed", color=graphics.Color.SECONDARY)
+        subText = graphics.SubText("Speed", color=graphics.Color.SECONDARY, alignment=Alignment.CENTER)
         return graphics.GraphicCell([dot, header, bodyText, switch, button, slider, subText])
 
 
