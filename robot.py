@@ -9,9 +9,9 @@ class Motor(Device):
         self.isEnabled = DeviceProperty(False, mutable=True)
         self.status_color = DeviceProperty(Color.DANGER, mutable=True)
 
-        self.speed.add_listener(lambda speed: print("Speed set to ", speed))
+        self.speed.add_listener(lambda speed: print("Speed set to ", speed.value))
         self.isEnabled.add_listener(self.__update_status_color)
-        self.status_color.add_listener(lambda color: print("Color set to ", color))
+        self.status_color.add_listener(lambda color: print("Color set to ", color.value))
 
         self.device_cell = self.__make_device_cell(name)
         super().__init__(f"{self.__class__.__name__}--{name}", [self.speed], self.device_cell)
