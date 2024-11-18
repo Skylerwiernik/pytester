@@ -16,8 +16,8 @@ class Motor(Device):
         self.device_cell = self.__make_device_cell(name)
         super().__init__(f"{self.__class__.__name__}--{name}", [self.speed], self.device_cell)
 
-    def __update_status_color(self, enabled):
-        self.status_color.value = Color.SUCCESS if enabled else Color.DANGER
+    def __update_status_color(self, enabled: DeviceProperty):
+        self.status_color.value = Color.SUCCESS if enabled.value else Color.DANGER
 
     def __make_device_cell(self, name):
         dot = graphics.StatusDot(self.status_color, alignment=graphics.Alignment.RIGHT)
