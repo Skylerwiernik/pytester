@@ -7,6 +7,7 @@ class TestTarget(Target):
     def __init__(self, robot: 'Robot'):
         self.process = None
         super().__init__("Test target", robot)
+
     def _run(self):
         def run_process():
             while True:
@@ -17,5 +18,5 @@ class TestTarget(Target):
         self.process.start()
         return self.process
 
-    def _shutdown(self, watchdog):
+    async def _shutdown(self, watchdog):
         self.process.terminate()
