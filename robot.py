@@ -9,11 +9,17 @@ class Motor(Device):
         self.isEnabled = DeviceProperty(False, mutable=True)
         self.status_color = DeviceProperty(Color.DANGER, mutable=True)
 
-        self.speed.add_listener(lambda speed: print("Speed set to ", speed.value))
+        self.speed.add_listener(self.__speed_updated)
         self.isEnabled.add_listener(self.__update_status_color)
         self.status_color.add_listener(lambda color: print("Color set to ", color.value))
 
         super().__init__([self.speed, self.isEnabled, self.status_color], self.__make_device_cell(name))
+
+
+    def __speed_updated(self, speed: DeviceProperty):
+        print("Speed set to ", speed.value)
+        # Async wait 2 secs then
+
 
     def __update_status_color(self, enabled: DeviceProperty):
         self.status_color.value = Color.SUCCESS if enabled.value else Color.DANGER
