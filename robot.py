@@ -1,7 +1,7 @@
 from cyberonics_py import Robot, Target
 
 from target import TestTarget
-from .motor import Motor
+from motor import Motor
 
 
 
